@@ -11,8 +11,8 @@
 function approveOrder(orderId) {
 	var xhttp = new XMLHttpRequest();
 	var addPrice=document.getElementById("addPrice"+orderId).value;
-	var orderNo=document.getElementById("addPrice"+orderId).getAttribute("orderNo");
-	var url = "http://localhost:8080/approveOrder/" + orderId+"/"+addPrice+"/"+orderNo;
+	var orderNo=document.getElementById("addPrice"+orderId).orderNo;
+	var url = "http://localhost:8080/approveOrder/" + orderId+"/"+100+"/"+1234;
 	xhttp.open("POST", url, true);
 	xhttp.setRequestHeader("Content-type", "application/json");
 	xhttp.send();
@@ -22,8 +22,8 @@ function approveOrder(orderId) {
 
 function rejectOrder(orderId) {
 	var xhttp = new XMLHttpRequest();
-	var orderNo=document.getElementById("addPrice"+orderId).getAttribute("orderNo");
-	var url = "http://localhost:8080/rejectOrder/"+orderId+"/"+orderNo;
+	var orderNo=document.getElementById("addPrice"+orderId).orderNo;
+	var url = "http://localhost:8080/rejectOrder/"+orderId+"/"+1234;
 	xhttp.open("POST", url, true);
 	xhttp.setRequestHeader("Content-type", "application/json");
 	xhttp.send();
@@ -58,7 +58,7 @@ function fittingsPopup(orderId){
     <thead>
       <tr>
       <td style="width: 5%;background-color: #93969b">OrderId</td>
-      <td style="width: 25%;background-color: #93969b">Product Image</td>
+      <td style="width: 25%;background-color: #93969b">Product</td>
       <td style="width: 20%;background-color: #93969b">UserId</td>
       <td style="width: 10%;background-color: #93969b">Fittings</td>
       <td style="width: 10%;background-color: #93969b">Price</td>
@@ -72,9 +72,9 @@ function fittingsPopup(orderId){
     <c:forEach  var="order" items="${orderDetails}">
     <tr bordercolor="blue">
        <td style="width: 5%;"><c:out value="${order.orderId}"/></td>
-       <td style="width: 25%;"><img src="#"></td>
+       <td style="width: 25%;"><img src=""></td>
        <td style="width: 20%;"><c:out value="${order.userId}"/></td>
-       <td style="width: 10%;"> <div id="fittingspopup${order.orderId}" value="${order.measurements}" ><img src="#"  onmouseover="fittingsPopup(${order.orderId})"/></div></td>
+       <td style="width: 10%;"> <div id="fittingspopup${order.orderId}" value="${order.measurements}" "><img src="#"  onmouseover="fittingsPopup(${order.orderId})"/></div></td>
        <td style="width: 10%;"><c:out value="${order.price}"/></td>
        <td style="width: 10%;"><input type="text" name="addPrice" id="addPrice${order.orderId}" value="${order.addPrice}" orderNo="${order.orderNumber}"/></td>
        <td style="width: 10%;"><button name="approveOrder" onclick="approveOrder(${order.orderId});">Approve Order</button></td>
