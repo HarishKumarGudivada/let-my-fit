@@ -11,8 +11,10 @@
 function approveOrder(orderId) {
 	var xhttp = new XMLHttpRequest();
 	var addPrice=document.getElementById("addPrice"+orderId).value;
-	var orderNo=document.getElementById("addPrice"+orderId).orderNo;
-	var url = "http://localhost:8080/approveOrder/" + orderId+"/"+100+"/"+1234;
+	var orderNo=document.getElementById("addPrice"+orderId).getAttribute("orderNo");
+	if(addPrice=='')
+		addPrice=0;
+	var url = "http://localhost:8080/approveOrder/" + orderId+"/"+addPrice+"/"+orderNo;
 	xhttp.open("POST", url, true);
 	xhttp.setRequestHeader("Content-type", "application/json");
 	xhttp.send();
@@ -22,8 +24,8 @@ function approveOrder(orderId) {
 
 function rejectOrder(orderId) {
 	var xhttp = new XMLHttpRequest();
-	var orderNo=document.getElementById("addPrice"+orderId).orderNo;
-	var url = "http://localhost:8080/rejectOrder/"+orderId+"/"+1234;
+	var orderNo=document.getElementById("addPrice"+orderId).getAttribute("orderNo");
+	var url = "http://localhost:8080/rejectOrder/"+orderId+"/"+orderNo;
 	xhttp.open("POST", url, true);
 	xhttp.setRequestHeader("Content-type", "application/json");
 	xhttp.send();
