@@ -6,7 +6,7 @@ public class OrderDetailsDto {
 	public static String PASSWORD="letmyfitteam";
 	
 	private int orderId;
-	private String orderNo;
+	private String orderNumber;
 	private String userId;
 	private String fittings;
 	private String productImage;
@@ -48,12 +48,13 @@ public class OrderDetailsDto {
 	public void setAdditionalPrice(double additionalPrice) {
 		this.additionalPrice = additionalPrice;
 	}
-	public String getOrderNo() {
-		return orderNo;
+	public String getOrderNumber() {
+		return orderNumber;
 	}
-	public void setOrderNo(String orderNo) {
-		this.orderNo = orderNo;
+	public void setOrderNumber(String orderNumber) {
+		this.orderNumber = orderNumber;
 	}
+	
 	
 	
 	
